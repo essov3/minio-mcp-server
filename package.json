@@ -1,0 +1,24 @@
+{
+  "name": "minio-mcp-server",
+  "version": "1.0.0",
+  "description": "Standalone MCP server for self-hosted MinIO — full S3-compatible object storage control via the Model Context Protocol",
+  "main": "index.js",
+  "author": "Eslam M. Mohamed",
+  "homepage": "https://github.com/essov3/minio-mcp-server",
+  "type": "module",
+  "bin": {
+    "minio-mcp-server": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["mcp", "minio", "s3", "object-storage", "model-context-protocol"],
+  "license": "MIT"
+}
