@@ -110,6 +110,62 @@ The server communicates over **stdio** (standard in/out), which is the MCP stand
 
 ---
 
+## Running with Docker
+
+The image is published on Docker Hub: [`essov3/minio-mcp-server`](https://hub.docker.com/r/essov3/minio-mcp-server)
+
+```bash
+docker pull essov3/minio-mcp-server:latest
+```
+
+Run the container (stdio transport — used by MCP clients):
+
+```bash
+docker run -i --rm \
+  -e MINIO_ENDPOINT=http://your-minio:9000 \
+  -e MINIO_ACCESS_KEY=minioadmin \
+  -e MINIO_SECRET_KEY=minioadmin \
+  -e MINIO_REGION=us-east-1 \
+  -e MINIO_WORKSPACE_ROOT=workspace/project_id \
+  essov3/minio-mcp-server:latest
+```
+
+### MCP client config (Docker)
+
+```json
+{
+  "mcpServers": {
+    "minio": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "MINIO_ENDPOINT",
+        "-e", "MINIO_ACCESS_KEY",
+        "-e", "MINIO_SECRET_KEY",
+        "-e", "MINIO_REGION",
+        "-e", "MINIO_WORKSPACE_ROOT",
+        "essov3/minio-mcp-server:latest"
+      ],
+      "env": {
+        "MINIO_ENDPOINT": "http://your-minio:9000",
+        "MINIO_ACCESS_KEY": "minioadmin",
+        "MINIO_SECRET_KEY": "minioadmin",
+        "MINIO_REGION": "us-east-1",
+        "MINIO_WORKSPACE_ROOT": ""
+      }
+    }
+  }
+}
+```
+
+To build from source instead:
+
+```bash
+docker build -t essov3/minio-mcp-server .
+```
+
+---
+
 ## MinIO with Docker (quick start)
 
 If you don't have MinIO running yet:
