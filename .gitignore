@@ -1,4 +1,4 @@
 .env
-/node_modules
-.vscode
-.gemini
+node_modules/
+.vscode/
+.gemini/
